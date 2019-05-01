@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+header {
+  text-align: center;
+  background-color: #444;
+  color: white;
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+#empty {
+  margin: 20px;
+}
