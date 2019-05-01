@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class MoneyService {
 
   wallet = 0;
+  isOk = false;
 
   constructor() { }
 
@@ -28,7 +30,7 @@ export class MoneyService {
     } else if (this.wallet > amount) {
       alert('To Much Money');
     } else {
-      alert('OK');
+      return this.isOk = true;
     }
   }
 }

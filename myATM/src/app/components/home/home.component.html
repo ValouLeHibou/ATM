@@ -27,11 +27,37 @@
         <p>{{ item.priceLabel }}</p>
       </div>
       <div class="card-action">
-        <a href="#" (click)="verifyMoney(item.priceValue)">Buy One</a>
+        <a href="#" (click)="verifyMoney(item)">Buy One</a>
       </div>
     </div>
   </div>
 </div>
 
-
-
+<div id="myForm" *ngIf="isOk">
+  <form class="col s12 m6 itemForm" [formGroup]="itemForm"  (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="firstname" type="text" class="validate" formControlName="firstname">
+        <label for="firstname">First name</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="lastname" type="text" class="validate" formControlName="lastname">
+        <label for="lastname">Last name</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="address" type="text" class="validate" formControlName="address">
+        <label for="address">Address</label>
+      </div>
+    </div>
+    <div class="row">
+      <p>Price : {{ currentItem.priceValue }} €</p>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="submit" class="btn" value="Purchase">
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MoneyService } from '../../services/money.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,9 @@ import { MoneyService } from '../../services/money.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  isOk;
+  currentItem;
 
   buttonList: any = [
     {label: '1 Centime', value: 0.01},
@@ -19,7 +23,7 @@ export class HomeComponent implements OnInit {
     {label: '2 Euros', value: 2},
     {label: '5 Euros', value: 5},
     {label: '10 Euros', value: 10},
-  ]
+  ];
 
   itemList: any = [
     {
@@ -70,7 +74,16 @@ export class HomeComponent implements OnInit {
       priceLabel: '15,30€',
       priceValue: 15.30,
     },
-  ]
+  ];
+
+  itemForm: FormGroup = new FormGroup({
+    firstname: new FormControl('', Validators.min(2)),
+    lastname: new FormControl('', Validators.min(2)),
+    address: new FormControl('', Validators.min(10)),
+    amount: new FormControl(''),
+    idProduct: new FormControl('')
+  });
+
 
   constructor(
     private moneyService: MoneyService
@@ -92,7 +105,13 @@ export class HomeComponent implements OnInit {
     return this.moneyService.empty();
   }
 
-  verifyMoney(amount) {
-    return this.moneyService.verify(amount);
+  verifyMoney(item) {
+    const amount = item.priceValue;
+    this.currentItem = item;
+    this.isOk = this.moneyService.verify(amount);
+  }
+
+  onSubmit() {
+    alert('ok');
   }
 }
